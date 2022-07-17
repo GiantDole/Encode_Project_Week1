@@ -39,5 +39,6 @@
     "typechain": "^5.1.2",
     "typescript": "^4.5.2"
   },
-  "author": "Adrian Koegl"
+  "author": "Adrian Koegl",
+  "test": "ts-mocha -r esm -p tsconfig.json test/**/Test*.ts"
 }

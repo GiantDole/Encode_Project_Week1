@@ -28,6 +28,9 @@ contract Ballot {
     // A dynamically-sized array of `Proposal` structs.
     Proposal[] public proposals;
 
+    // number of proposals for ballot
+    uint256 public numProposals;
+
     /// Create a new ballot to choose one of `proposalNames`.
     constructor(bytes32[] memory proposalNames) {
         chairperson = msg.sender;
@@ -41,6 +44,7 @@ contract Ballot {
             // Proposal object and `proposals.push(...)`
             // appends it to the end of `proposals`.
             proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
+            numProposals += 1;
         }
     }
 
