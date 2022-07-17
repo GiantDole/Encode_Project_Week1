@@ -8,9 +8,9 @@ yarn hardhat compile
 
 ### Instructions:
 * Structure scripts to
-  * Deploy
-  * Query proposals
-  * Give vote right passing an address as input
+  * Deploy :white_check_mark:
+  * Query proposals :white_check_mark:
+  * Give vote right passing an address as input :white_check_mark:
   * Cast a vote to a ballot passing contract address and proposal as input and using the wallet in environment
   * Delegate my vote passing  user address as input and using the wallet in environment
   * Query voting result and print to console
