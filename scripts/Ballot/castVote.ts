@@ -4,6 +4,10 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 // eslint-disable-next-line node/no-missing-import
 import { Ballot } from "../../typechain";
 
+
+/**
+ * Entry point to cast vote in ballot contract - expecting contract addess and then proposal index to be passed in
+ */
 async function main() {
     if(process.argv.length < 2) throw new Error ("No contract address specified.");
     const contractAddress = process.argv[2];
@@ -34,6 +38,9 @@ async function main() {
     console.log(`Transaction completed. Hash: ${tx.hash}`);
 }
 
+/**
+ * A check for any errors - will print to console if something goes wrong
+ */
 main().catch((error) => {
     console.error(error);
     process.exitCode = 1;

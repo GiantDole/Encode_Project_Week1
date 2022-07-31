@@ -4,6 +4,9 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 // eslint-disable-next-line node/no-missing-import
 import { Ballot } from "../../typechain";
 
+/**
+ * Entry point to delegate votes in a ballot contract - expecting ballot adress and address to delegate to
+ */
 async function main() {
 
     if(process.argv.length < 2) throw new Error("No user address specified!");
@@ -36,6 +39,9 @@ async function main() {
     console.log(`Transaction Hash: ${tx.hash}`);
 }
 
+/**
+ * A check for any errors - will print to console if something goes wrong
+ */
 main().catch((error) => {
     console.error(error);
     process.exitCode = 1;
