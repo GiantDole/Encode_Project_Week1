@@ -7,6 +7,11 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
 
+/**
+ * Function that Converts strings to type bytes32 
+ * @param array list of strings to be converted to bytes objects for gas optimizations  
+ * @returns bytes32Array - a fixed length type in solidity as opposed to dynamic strings 
+ */
 function convertStringArrayToBytes32(array: string[]) {
   const bytes32Array = [];
   for (let index = 0; index < array.length; index++) {
@@ -15,10 +20,12 @@ function convertStringArrayToBytes32(array: string[]) {
   return bytes32Array;
 }
 
+/**
+ * Entry point to deploy a ballot contract - expecting proposals to be passed in
+ */
 async function main() {
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? EXPOSED_KEY);
   console.log(`Using address ${wallet.address}`);
-  //const provider = ethers.providers.getDefaultProvider("rinkeby");
   const provider = new ethers.providers.AlchemyProvider('rinkeby', process.env.API_KEY);
   const signer = wallet.connect(provider);
   const balanceBN = await signer.getBalance();
@@ -48,6 +55,10 @@ async function main() {
   console.log(`Contract deployed at ${ballotContract.address}`);
 }
 
+
+/**
+ * A check for any errors - will print to console if something goes wrong
+ */
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;

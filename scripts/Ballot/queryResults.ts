@@ -4,6 +4,10 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 // eslint-disable-next-line node/no-missing-import
 import { Ballot } from "../../typechain";
 
+
+/**
+ * Entry point to queuery results in ballot contract - expecting contract adress
+ */
 async function main() {
     if (process.argv.length < 2) throw new Error("No contract address specified.");
     const ballotAddress = process.argv[2];
@@ -11,7 +15,7 @@ async function main() {
     const provider = new ethers.providers.AlchemyProvider('rinkeby', process.env.API_KEY);
 
     const ballotContract : Ballot = new Contract(
-        ballotAddress,
+        ballotAddress, 
         ballotJson.abi,
         provider
     ) as Ballot;
@@ -23,6 +27,9 @@ async function main() {
     console.log(`The proposal "${ethers.utils.parseBytes32String(winningProposal.name)}" with index ${index} has won with ${winningProposal.voteCount} votes.`);
 }
 
+/**
+ * A check for any errors - will print to console if something goes wrong
+ */
 main().catch((error) => {
     console.error(error);
     process.exitCode = 1;
